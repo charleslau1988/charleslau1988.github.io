@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang='zh-CN'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>野阔江流</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, 'Microsoft YaHei', sans-serif;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff;
+  }
+  .container { text-align: center; padding: 2rem; }
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(90deg, #f093fb, #f5576c, #4facfe);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .subtitle { color: #aaa; margin-bottom: 3rem; font-size: 1.1rem; }
+  .cards { display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; max-width: 800px; }
+  .card {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 16px;
+    padding: 2rem;
+    width: 340px;
+    text-decoration: none;
+    color: #fff;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+  }
+  .card h2 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+  .card p { color: #bbb; font-size: 0.9rem; line-height: 1.6; }
+  .tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.12);
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    margin-top: 0.8rem;
+    margin-right: 4px;
+  }
+  footer { margin-top: 3rem; color: #666; font-size: 0.8rem; }
+</style>
+</head>
+<body>
+<div class='container'>
+  <h1>野阔江流</h1>
+  <p class='subtitle'>全栈量化交易者 · 数据与策略的探索者</p>
+  <div class='cards'>
+    <a class='card' href='https://charleslau1988.github.io/quant-trading-mindmap/'>
+      <h2>📈 量化交易系统搭建指南</h2>
+      <p>六层架构 · 16核心模块 · 交互式思维导图</p>
+      <span class='tag'>策略开发</span><span class='tag'>回测框架</span><span class='tag'>风控体系</span>
+    </a>
+    <a class='card' href='https://charleslau1988.github.io/data-governance-mindmap/'>
+      <h2>🏗️ 数据治理全景框架</h2>
+      <p>16核心模块 · 87叶节点 · 交互式思维导图</p>
+      <span class='tag'>数据标准</span><span class='tag'>元数据</span><span class='tag'>数据安全</span>
+    </a>
+  </div>
+  <footer>© 2026 野阔江流 · Powered by GitHub Pages</footer>
+</div>
+</body>
+</html>
