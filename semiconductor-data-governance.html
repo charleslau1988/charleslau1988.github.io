@@ -2,7 +2,8 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<title>半导体制造业数据治理实施方案 - 交互式思维导图</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>半导体设备制造企业数据治理实施方案 - 交互式思维导图</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,"Microsoft YaHei","PingFang SC",sans-serif;background:#f8f9fa;color:#2c3e50}
@@ -74,21 +75,24 @@ body{font-family:-apple-system,"Microsoft YaHei","PingFang SC",sans-serif;backgr
 
 .footer{text-align:center;padding:20px;color:#adb5bd;font-size:12px}
 
-/* Mini table for inside detail cards */
 .table-mini{border-collapse:collapse;margin:8px 0 8px 16px;font-size:12px;width:calc(100% - 32px)}
 .table-mini th{background:#2e86ab;color:white;padding:6px 10px;text-align:left;font-weight:600}
 .table-mini td{padding:5px 10px;border-bottom:1px solid #e9ecef;color:#495057}
 .table-mini tr:nth-child(even) td{background:#f8f9fa}
 .table-mini th:first-child{border-radius:6px 0 0 0}
 .table-mini th:last-child{border-radius:0 6px 0 0}
+
+.dim-table{font-size:11.5px;margin:4px 0}
+.dim-table td{padding:3px 6px;border:1px solid #e9ecef;vertical-align:top}
+.dim-table th{background:#2e86ab;color:white;padding:4px 8px;text-align:left;font-weight:600}
 </style>
 </head>
 <body>
 
 <div class="header">
-<h1>🔬 半导体制造业数据治理实施方案</h1>
-<p>晶圆制造（FAB）+ 封装测试（OSAT）全链路 | 基于 DAMA-DMBOK / ISA-95 / IPD 框架 | 12 个月分三阶段落地</p>
-<p style="font-size:13px;opacity:.7;margin-top:4px;">作者：野阔江流</p>
+<h1>🔧 半导体设备制造企业数据治理实施方案</h1>
+<p>设备 SN + BOM 双 Hub | 六层架构 · 五步 ETL | 基于 DAMA-DMBOK / IPD 框架 | 12 个月四阶段落地</p>
+<p style="font-size:13px;opacity:.7;margin-top:4px;">适用企业：北方华创 · 富创精密 · 中微公司 · 盛美上海</p>
 </div>
 
 <div class="toolbar">
@@ -102,29 +106,30 @@ body{font-family:-apple-system,"Microsoft YaHei","PingFang SC",sans-serif;backgr
 
 <!-- ROOT -->
 <div class="node node-root">
-<div class="root-title">🏭 半导体数据治理全景框架</div>
-<p style="margin-top:12px;color:#6c757d;font-size:13.5px;">建立可管、可控、可追溯的半导体数据资产体系 | 一物一码 · BOM一致 · 参数标准化 · 质量可量化</p>
+<div class="root-title">🔧 半导体设备数据治理全景框架</div>
+<p style="margin-top:12px;color:#6c757d;font-size:13.5px;">设备 SN + BOM 双 Hub | 一物一码 · BOM 一致 · 参数标准 · 质量可量化 · 全生命周期追溯</p>
 </div>
 
 <!-- ===== 1. 项目背景与目标 ===== -->
 <div class="node branch c-blue">
 <div class="branch-header" onclick="toggle(this)">
 <i class="toggle-icon">▶</i>
-<span class="branch-title">一、项目背景与目标</span><span class="badge">SMART 8项</span>
+<span class="branch-title">一、项目背景与量化目标</span><span class="badge">SMART 8项</span>
 </div>
 <div class="children">
 <div class="sub-branch">
 <div class="sub-header" onclick="toggleSub(this)">
 <i class="sub-toggle">▶</i>
-<span class="sub-title">1.1 FAB 数据画像</span>
+<span class="sub-title">1.1 设备制造数据环境画像</span>
 </div>
 <div class="children">
 <div class="leaves">
-<span class="leaf">工序数：200-800 道</span>
-<span class="leaf">单工序参数：10-50 个</span>
-<span class="leaf">日数据量：1-10 TB</span>
-<span class="leaf">数据层级：Lot→Wafer→Die→Site</span>
-<span class="leaf">系统数量：ERP / PLM / MES / EAP / FDC / SPC / YMS / QMS</span>
+<span class="leaf">产品复杂度：3000-50000 个零部件/台，多层 BOM</span>
+<span class="leaf">制造模式：多品种小批量 + ETO + 现场定制</span>
+<span class="leaf">核心系统：PLM / ERP / MES / QMS / SCM / CRM / IoT</span>
+<span class="leaf">日均数据量：10-100 GB（设计文件/装配记录/测试报告）</span>
+<span class="leaf">数据层级：整机SN → 模组SN → 部件批次 → 物料编码</span>
+<span class="leaf">生命周期：10-20 年（出厂到退役全程追溯）</span>
 </div>
 </div>
 </div>
@@ -134,12 +139,12 @@ body{font-family:-apple-system,"Microsoft YaHei","PingFang SC",sans-serif;backgr
 <span class="sub-title">1.2 五大核心痛点</span>
 </div>
 <div class="children">
-<table class="table-mini"><thead><tr><th>痛点</th><th>表现</th><th>影响</th></tr></thead><tbody>
-<tr><td>数据孤岛</td><td>各系统数据不通，编码不一致</td><td>追溯断链、工单错误</td></tr>
-<tr><td>标准缺失</td><td>参数名称不统一</td><td>跨厂对比无法进行</td></tr>
-<tr><td>质量不可控</td><td>缺失值、异常值大量存在</td><td>FDC 告警不准、良率偏差</td></tr>
-<tr><td>资产不清</td><td>无人能说清 FAB 有哪几种数据</td><td>治理无从下手</td></tr>
-<tr><td>变更管理弱</td><td>ECN 后 BOM 更新不及时</td><td>参数与设计不符</td></tr>
+<table class="table-mini"><thead><tr><th>痛点</th><th>表现</th><th>后果</th></tr></thead><tbody>
+<tr><td>BOM版本失控</td><td>EBOM/MBOM/现场升级BOM各自为政</td><td>备件发错、维保错配</td></tr>
+<tr><td>标准缺失</td><td>参数命名/单位不统一</td><td>跨型号无法对比</td></tr>
+<tr><td>质量追溯断裂</td><td>来料/装配/测试数据各自独立</td><td>客诉查不清根因</td></tr>
+<tr><td>资产不清</td><td>PLM/ERP/MES物料编码不一致</td><td>一物多码，采购对不上</td></tr>
+<tr><td>变更失管</td><td>ECN后BOM与工艺未联动</td><td>现场设备与图纸不符</td></tr>
 </tbody></table>
 </div>
 </div>
@@ -151,42 +156,68 @@ body{font-family:-apple-system,"Microsoft YaHei","PingFang SC",sans-serif;backgr
 <div class="children">
 <table class="table-mini"><thead><tr><th>#</th><th>指标</th><th>目标值</th></tr></thead><tbody>
 <tr><td>①</td><td>物料主数据唯一率</td><td>≥ 99.5%</td></tr>
-<tr><td>②</td><td>BOM 一致性率</td><td>≥ 98%</td></tr>
-<tr><td>③</td><td>工艺参数完整率</td><td>≥ 95%</td></tr>
-<tr><td>④</td><td>参数标准化覆盖率</td><td>≥ 90%</td></tr>
-<tr><td>⑤</td><td>数据资产目录覆盖率</td><td>100%</td></tr>
-<tr><td>⑥</td><td>数据质量通过率</td><td>≥ 90%</td></tr>
-<tr><td>⑦</td><td>变更响应时间缩短</td><td>50%</td></tr>
-<tr><td>⑧</td><td>跨系统数据一致性率</td><td>≥ 98%</td></tr>
+<tr><td>②</td><td>BOM一致率（EBOM↔MBOM）</td><td>≥ 98%</td></tr>
+<tr><td>③</td><td>装配工艺参数完备率</td><td>≥ 95%</td></tr>
+<tr><td>④</td><td>数据资产目录覆盖率</td><td>100%</td></tr>
+<tr><td>⑤</td><td>数据质量通过率</td><td>≥ 90%</td></tr>
+<tr><td>⑥</td><td>ECN变更闭环率</td><td>≥ 95%</td></tr>
+<tr><td>⑦</td><td>关键件追溯率</td><td>100%</td></tr>
+<tr><td>⑧</td><td>跨系统物料一致率</td><td>≥ 98%</td></tr>
 </tbody></table>
+</div>
+</div>
+<div class="sub-branch">
+<div class="sub-header" onclick="toggleSub(this)">
+<i class="sub-toggle">▶</i>
+<span class="sub-title">1.4 数据治理价值与可分析问题</span>
+</div>
+<div class="children">
+<div class="leaves">
+<span class="leaf">装配质量追溯：8小时→15分钟</span>
+<span class="leaf">库存呆滞降低：消除一物多码</span>
+<span class="leaf">维修响应加速：MTTR数据即时查询</span>
+<span class="leaf">跨部门对账：3-5天→1天</span>
+<span class="leaf">停线返工减少50-60%</span>
+</div>
+<div class="detail-card">
+<strong>质量问题分析场景：</strong><br>
+├─ 装配不良集中在哪个模组/工序 → fact_Assembly 维度聚合<br>
+├─ 同一零件不同批次质量波动 → dim_Part + fact_Inspection 趋势<br>
+├─ BOM版本切换前后质量对比 → dim_BOM SCD Type 2 回溯<br>
+├─ 老化通过率与温箱相关性 → fact_TestResult + BurnInRoomID<br>
+├─ 供应商来料不良排名 → fact_Inspection 按 Supplier 聚合<br>
+├─ 故障代码分布 → fact_Maintain + FaultCode 交叉分析<br><br>
+<strong>运营效率分析：</strong>Cycle Time趋势 / Top N失效零件 / 瓶颈工序 / 备件消耗预测<br>
+<strong>合规风控：</strong>出口管制零件流向 / 设计图纸访问审计 / 客户数据隔离
+</div>
 </div>
 </div>
 </div>
 </div>
 
-<!-- ===== 2. 治理架构与组织保障 ===== -->
+<!-- ===== 2. 数据治理组织架构 ===== -->
 <div class="node branch c-purple">
 <div class="branch-header" onclick="toggle(this)">
 <i class="toggle-icon">▶</i>
-<span class="branch-title">二、治理架构与组织保障</span><span class="badge">三层+RACI</span>
+<span class="branch-title">二、数据治理组织架构</span><span class="badge">三层+RACI</span>
 </div>
 <div class="children">
 <div class="sub-branch">
 <div class="sub-header" onclick="toggleSub(this)">
 <i class="sub-toggle">▶</i>
-<span class="sub-title">2.1 委员会 + DMO + 管家 三层架构</span>
+<span class="sub-title">2.1 三层治理结构</span>
 </div>
 <div class="children">
 <div class="detail-card">
 <strong style="color:#2e86ab;">🏛️ 决策层 — 数据治理委员会</strong><br>
-主任委员：CIO/CDO | 委员：研发总监、工艺总监、制造总监、质量总监<br>
-议事机制：月度例会 + 季度评审 + 年度规划<br><br>
+主席：CIO/CDO | 成员：研发总监、制造总监、质量总监、供应链总监、服务总监<br>
+月度例会 + 季度回顾 + 年度规划<br><br>
 <strong style="color:#8e44ad;">📋 管理层 — DMO（数据管理办公室）</strong><br>
 ├─ 数据治理组（3-5人）：标准制定、质量管控、工具平台<br>
-├─ 数据管家网络（10-20人，业务兼职）：研发/工艺/制造/质量/物料/设备各设管家<br>
-└─ 技术支撑组：数据架构师（1人）+ 数据工程师（3-5人）<br><br>
-<strong style="color:#e67e22;">🔧 执行层 — 六类数据管家</strong><br>
-研发管家(EBOM) · 工艺管家(PBOM/工艺参数) · 制造管家(MBOM/设备参数) · 质量管家(检验/缺陷) · 物料管家(物料主数据) · 设备管家(设备主数据)
+├─ 数据管家网络（8-12人，业务兼职）：研发/工艺/制造/质量/物料/设备/服务 各设管家<br>
+└─ 技术支持组（1数据架构师 + 3-5数据工程师）<br><br>
+<strong style="color:#e67e22;">🔧 执行层 — 业务部门 + IT 部门</strong><br>
+业务：执行标准、录入规范数据、反馈问题 | IT：系统改造、接口开发、平台运维
 </div>
 </div>
 </div>
@@ -196,10 +227,10 @@ body{font-family:-apple-system,"Microsoft YaHei","PingFang SC",sans-serif;backgr
 <span class="sub-title">2.2 RACI 权责矩阵</span>
 </div>
 <div class="children">
-<table class="table-mini"><thead><tr><th>治理活动</th><th>数据Owner</th><th>DMO</th><th>IT</th><th>管家(业务)</th></tr></thead><tbody>
-<tr><td>物料主数据</td><td>A</td><td>R</td><td>C</td><td>C</td></tr>
-<tr><td>BOM 标准</td><td>A</td><td>C</td><td>I</td><td>R</td></tr>
-<tr><td>工艺参数标准</td><td>A</td><td>R</td><td>C</td><td>C</td></tr>
+<table class="table-mini"><thead><tr><th>治理活动</th><th>数据Owner</th><th>DMO</th><th>IT</th><th>管家</th></tr></thead><tbody>
+<tr><td>物料主数据标准</td><td>A</td><td>R</td><td>C</td><td>C</td></tr>
+<tr><td>BOM标准</td><td>A</td><td>C</td><td>I</td><td>R</td></tr>
+<tr><td>装配/测试参数标准</td><td>A</td><td>R</td><td>C</td><td>C</td></tr>
 <tr><td>元数据管理</td><td>I</td><td>A</td><td>R</td><td>C</td></tr>
 <tr><td>数据质量监控</td><td>I</td><td>A</td><td>R</td><td>C</td></tr>
 <tr><td>数据安全策略</td><td>A</td><td>C</td><td>R</td><td>I</td></tr>
@@ -210,92 +241,160 @@ body{font-family:-apple-system,"Microsoft YaHei","PingFang SC",sans-serif;backgr
 <div class="sub-branch">
 <div class="sub-header" onclick="toggleSub(this)">
 <i class="sub-toggle">▶</i>
-<span class="sub-title">2.3 三层次制度体系</span>
+<span class="sub-title">2.3 三级制度体系</span>
 </div>
 <div class="children">
 <div class="leaves">
-<span class="leaf">①治理总纲：《数据治理管理办法》</span>
-<span class="leaf">②专项规定：主数据/BOM/工艺参数/数据质量/数据安全/元数据 6份</span>
-<span class="leaf">③操作SOP：物料编码申请/ECN变更/质量异常处理/资产盘点</span>
+<span class="leaf">一级 治理总纲：《数据治理管理办法》</span>
+<span class="leaf">二级 专项规定：主数据/BOM/测试参数/数据质量/数据安全/元数据 6份</span>
+<span class="leaf">三级 操作SOP：物料编码申请/ECN变更/质量异常处理/资产盘点 10+份</span>
 </div>
 </div>
 </div>
 </div>
 </div>
 
-<!-- ===== 3. 数据资产盘点与分类分级 ===== -->
+<!-- ===== 3. 数据架构分层设计 ===== -->
 <div class="node branch c-green">
 <div class="branch-header" onclick="toggle(this)">
 <i class="toggle-icon">▶</i>
-<span class="branch-title">三、数据资产盘点与分类分级</span><span class="badge">ISA-95全景</span>
+<span class="branch-title">三、数据架构分层设计</span><span class="badge">六层架构</span>
 </div>
 <div class="children">
 <div class="sub-branch">
 <div class="sub-header" onclick="toggleSub(this)">
 <i class="sub-toggle">▶</i>
-<span class="sub-title">3.1 FAB 数据资产全景（ISA-95 × 数据域）</span>
+<span class="sub-title">3.1 六层架构总览</span>
 </div>
 <div class="children">
-<table class="table-mini"><thead><tr><th></th><th>Level 4 企业经营层</th><th>Level 3 运营管理层</th><th>Level 2 监督控制层</th></tr></thead><tbody>
-<tr><td><strong>研发</strong></td><td>产品设计BOM</td><td>设计变更ECN / DFx仿真</td><td>—</td></tr>
-<tr><td><strong>工艺</strong></td><td>工艺路线定义</td><td>工艺流程PBOM / RMS配方</td><td>实时工艺参数(FDC)</td></tr>
-<tr><td><strong>制造</strong></td><td>生产计划(Wafer Start)</td><td>工单执行 / Lot追踪</td><td>设备状态 / PLC数据</td></tr>
-<tr><td><strong>质量</strong></td><td>质量标准 / 良率目标</td><td>SPC/FDC / 缺陷分类(ADC)</td><td>传感器原始值</td></tr>
-<tr><td><strong>设备</strong></td><td>设备台账 / 备件BOM</td><td>设备OEE / 维修记录</td><td>设备Recipe / PM状态</td></tr>
+<div class="detail-card">
+<strong>① Source 层：</strong>PLM(EBOM/ECN) · ERP(PO/库存) · MES(工单/装配) · QMS(来料/过程/出货) · SCM · CRM · IoT · 测试系统<br><br>
+<strong>② Streaming 层：</strong>Kafka/Flink — 装配线传感器 · 老化测试 · IoT远程监控 实时处理<br><br>
+<strong>③ Raw/ODS 层：</strong>零清洗采集，原始表+异常表隔离<br>
+└─ raw_mes_assembly / raw_qms_inspection / raw_test_burnin<br>
+└─ exc_mes_assembly（脏数据不阻断流程）<br><br>
+<strong>④ Staging 层：</strong>字段标准化 · ID Mapping · 脏数据打标<br>
+└─ stg_mes_assembly / stg_qms_data / stg_plm_bom / stg_test_result<br><br>
+<strong>⑤ DW 层：</strong>统一维表(SCD Type 2) + 事实表（纯整合,不加业务字段）<br>
+└─ dim_Equipment / dim_Part / dim_BOM / dim_Process / dim_Supplier<br>
+└─ fact_Assembly / fact_Inspection / fact_Maintain / fact_TestResult<br><br>
+<strong>⑥ Mart 层：</strong>反规范化宽表，面向分析场景，View/物化视图实现<br>
+└─ 生产/质量/设备/供应链/售后/经营 6大集市<br><br>
+<strong>⑦ App 层：</strong>BI报表(PowerBI) · 数据大屏(OEE) · 质量分析 · 预测维护 · API服务
+</div>
+</div>
+</div>
+<div class="sub-branch">
+<div class="sub-header" onclick="toggleSub(this)">
+<i class="sub-toggle">▶</i>
+<span class="sub-title">3.2 数据生命周期策略</span>
+</div>
+<div class="children">
+<table class="table-mini"><thead><tr><th>层级</th><th>生命周期</th><th>存储策略</th></tr></thead><tbody>
+<tr><td>Streaming</td><td>热存 7 天</td><td>Kafka Topic 保留后入时序库</td></tr>
+<tr><td>Raw/ODS</td><td>保留 30 天</td><td>压缩存储后归档</td></tr>
+<tr><td>Staging</td><td>保留 90 天</td><td>标准存储后清理</td></tr>
+<tr><td>DW</td><td>长期全量</td><td>SCD Type 2 全保留</td></tr>
+<tr><td>Mart</td><td>按需刷新</td><td>View/物化视图 D+1</td></tr>
 </tbody></table>
 </div>
 </div>
 <div class="sub-branch">
 <div class="sub-header" onclick="toggleSub(this)">
 <i class="sub-toggle">▶</i>
-<span class="sub-title">3.2 数据分类分级矩阵</span>
+<span class="sub-title">3.3 批流分流设计</span>
 </div>
 <div class="children">
-<table class="table-mini"><thead><tr><th>数据类别</th><th>级别</th><th>重要性</th><th>加密要求</th></tr></thead><tbody>
-<tr><td>产品设计BOM</td><td>🔴绝密</td><td>★★★★★</td><td>传输+存储加密</td></tr>
-<tr><td>工艺配方(Recipe)</td><td>🔴绝密</td><td>★★★★★</td><td>传输+存储加密</td></tr>
-<tr><td>良率数据</td><td>🟡机密</td><td>★★★★</td><td>传输加密</td></tr>
-<tr><td>设备参数</td><td>🟡机密</td><td>★★★★</td><td>传输加密</td></tr>
-<tr><td>物料主数据</td><td>🟢内部</td><td>★★★</td><td>传输加密</td></tr>
-<tr><td>质量检测数据</td><td>🟡机密</td><td>★★★★</td><td>传输加密</td></tr>
-<tr><td>设备台账</td><td>🟢内部</td><td>★★</td><td>基本权限</td></tr>
-<tr><td>员工信息</td><td>🔴敏感</td><td>★★★</td><td>GDPR合规</td></tr>
-</tbody></table>
-</div>
-</div>
-<div class="sub-branch">
-<div class="sub-header" onclick="toggleSub(this)">
-<i class="sub-toggle">▶</i>
-<span class="sub-title">3.3 三元数据采集策略</span>
-</div>
-<div class="children">
-<div class="leaves">
-<span class="leaf">技术元数据：主动扫描 PLM/MES/EAP/SCADA/SPC/YMS/ERP</span>
-<span class="leaf">业务元数据：人工梳理 + 众包标注业务含义</span>
-<span class="leaf">操作元数据：自动采集数据产生/更新时间、访问热度</span>
+<div class="detail-card">
+<strong>时序/事件型数据</strong>（老化测试参数、IoT 传感器、工位状态）<br>
+└─ Kafka → Flink 实时处理 → 实时告警 + 时序库 + 降采样入DW<br><br>
+<strong>事务型数据</strong>（工单、BOM、库存、检验记录）<br>
+└─ CDC(Debezium) → Kafka → Batch ETL → Raw→Staging→DW（T+1）
 </div>
 </div>
 </div>
 </div>
 </div>
 
-<!-- ===== 4. 数据标准体系 ===== -->
+<!-- ===== 4. 核心数据模型 ===== -->
 <div class="node branch c-orange">
 <div class="branch-header" onclick="toggle(this)">
 <i class="toggle-icon">▶</i>
-<span class="branch-title">四、数据标准体系</span><span class="badge">4层+物料+参数</span>
+<span class="branch-title">四、核心数据模型：设备 SN + BOM 双 Hub</span><span class="badge">10张核心表</span>
 </div>
 <div class="children">
 <div class="sub-branch">
 <div class="sub-header" onclick="toggleSub(this)">
 <i class="sub-toggle">▶</i>
-<span class="sub-title">4.1 四层标准架构</span>
+<span class="sub-title">4.1 双 Hub 建模逻辑</span>
+</div>
+<div class="children">
+<div class="detail-card">
+<strong>SN Hub — 设备一生一本账：</strong>每台设备出厂SN唯一编码，贯穿装配→检验→出货→装机→维保→退役<br><br>
+<strong>BOM Hub — 版本化管理：</strong>一台设备经历多次升级后BOM结构完全不同，需要独立版本追踪<br><br>
+<strong>ID Mapping：</strong>SN ↔ MES资产号 ↔ ERP固定资产号 ↔ CRM设备号 ↔ 客户设备标签<br>
+内部物料号 ↔ 供应商料号 ↔ 客户指定料号
+</div>
+</div>
+</div>
+<div class="sub-branch">
+<div class="sub-header" onclick="toggleSub(this)">
+<i class="sub-toggle">▶</i>
+<span class="sub-title">4.2 核心维表设计</span>
+</div>
+<div class="children">
+<div class="detail-card">
+<strong>dim_Equipment（设备维度，SN Hub）：</strong><br>
+EqpSN(UQ) · EqpModel · EqpCategory · CustName · ShipDate · InstallDate<br>
+CurrentBOMVersion · OriginalBOMVersion · EqpStatus · SecurityLevel<br>
+SCD字段：ValidFrom · ValidTo · IsActive<br><br>
+<strong>dim_BOM（BOM维度，BOM Hub）：</strong><br>
+EqpModel + BOMVersion(UQ) · BOMStatus(Draft/Released/Obsolete) · CustCode<br><br>
+<strong>dim_BOMDetail（BOM明细，多层展平）：</strong><br>
+BOMID(FK) · ParentPartID · PartID · PartQty · LevelNo(0=整机/1=模组/2=子模组) · Position · IsCritical · ReplaceablePartNo<br><br>
+<strong>dim_Part（部件主数据）：</strong><br>
+PartNo(UQ) · PartName · PartCategory(机械件/电气件/耗材/标准件) · SupplierID<br>
+IsSerialTracked · SpecValue · Tolerance · ShelfLifeDays · IsRoHS · IsESDSensitive
+</div>
+</div>
+</div>
+<div class="sub-branch">
+<div class="sub-header" onclick="toggleSub(this)">
+<i class="sub-toggle">▶</i>
+<span class="sub-title">4.3 核心事实表设计</span>
+</div>
+<div class="children">
+<div class="detail-card">
+<strong>fact_Assembly（装配事实）：</strong>WorkOrderNo · EqpSN · ProcessStep · OperatorID · StartTime · EndTime · DurationMinutes · OutputQty · ScrapQty<br><br>
+<strong>fact_Inspection（检验事实）：</strong>InspectionType(来料/过程/出货/客诉) · PartID · EqpSN · InspectItem · InspectValue · SpecLower · SpecUpper · Result(Pass/Fail) · DefectCode<br><br>
+<strong>fact_TestResult（测试结果）：</strong>TestType(出厂/老化/校准/现场复测) · TestItem · TestValue · SpecLower · SpecUpper · Result<br><br>
+<strong>fact_Maintain（维保事实）：</strong>MaintainType(Preventive/Corrective/Predictive) · FaultCode · FaultCategory · DowntimeMinutes · ReplaceParts(JSON) · TechnicianID<br><br>
+<strong>map_EqpBOM（设备-BOM关联）：</strong>EqpID · BOMID · InstallDate · ECNOrderNo · ChangeReason · ValidFrom · ValidTo · IsCurrent<br><br>
+<strong>fact_TestAggregated（时序聚合）：</strong>EqpSN · TestItem · AggHour · AvgValue · StdDev · Min/Max · OutOfSpecCount<br><br>
+<strong>ID Mapping 表：</strong>map_EquipmentIdentity / map_PartIdentity（置信度Confidence字段）
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ===== 5. 数据标准体系 ===== -->
+<div class="node branch c-teal">
+<div class="branch-header" onclick="toggle(this)">
+<i class="toggle-icon">▶</i>
+<span class="branch-title">五、数据标准体系</span><span class="badge">四层+物料+参数</span>
+</div>
+<div class="children">
+<div class="sub-branch">
+<div class="sub-header" onclick="toggleSub(this)">
+<i class="sub-toggle">▶</i>
+<span class="sub-title">5.1 四层标准架构</span>
 </div>
 <div class="children">
 <div class="leaves">
 <span class="leaf">基础标准：数据元 · 代码标准 · 标识标准</span>
-<span class="leaf">主数据标准：物料 · 设备 · 供应商/客户</span>
-<span class="leaf">业务标准：BOM结构 · 工艺参数 · 质量数据</span>
+<span class="leaf">主数据标准：物料 · 设备 · 供应商</span>
+<span class="leaf">业务标准：BOM结构 · 装配工艺 · 测试规范</span>
 <span class="leaf">交换标准：接口规范 · 消息格式 · 同步策略</span>
 </div>
 </div>
@@ -303,340 +402,443 @@ body{font-family:-apple-system,"Microsoft YaHei","PingFang SC",sans-serif;backgr
 <div class="sub-branch">
 <div class="sub-header" onclick="toggleSub(this)">
 <i class="sub-toggle">▶</i>
-<span class="sub-title">4.2 物料编码规则（混合编码）</span>
+<span class="sub-title">5.2 物料编码规则</span>
 </div>
 <div class="children">
 <div class="detail-card">
-<code>RCT - 02 - 001 - 00001</code><br>
-├─ RCT = 品类码（电阻）<br>
-├─ 02 = 大类（贴片）<br>
-├─ 001 = 小类（0402）<br>
-└─ 00001 = 流水号（5位数字）<br><br>
-<strong>核心属性（25个必填项）：</strong><br>
-基础信息：编码/名称/描述/品类/状态<br>
-技术规格：封装/标称值/单位/公差/功率/电压<br>
-供应链：首选供应商/采购单位/最小包装量/提前期<br>
-财务：标准成本/币种<br>
-管理：创建人/日期/审批状态
+<code>XX - YY - ZZZ - NNNNN</code><br>
+├─ XX = 大类码（RC=电阻, CC=电容, IC=芯片, ME=金属件, SE=密封件）<br>
+├─ YY = 中类码（01=贴片, 02=插件, 03=定制加工件）<br>
+├─ ZZZ = 小类码（001=0402封装, 002=0603封装）<br>
+└─ NNNNN = 流水号（5位数字）
 </div>
 </div>
 </div>
 <div class="sub-branch">
 <div class="sub-header" onclick="toggleSub(this)">
 <i class="sub-toggle">▶</i>
-<span class="sub-title">4.3 工艺参数命名规范</span>
+<span class="sub-title">5.3 装配/测试参数命名规范</span>
 </div>
 <div class="children">
 <div class="detail-card">
-<strong>命名规则：</strong>{设备/工序前缀}_{参数名}_{单位}<br><br>
-🔥 <strong>炉管（DIFF）：</strong><br>
-├─ DIFF_TEMP_°C — 炉管温度<br>
-├─ DIFF_PRESSURE_Torr — 炉管压力<br>
-└─ DIFF_GAS_FLOW_sccm — 气体流量<br><br>
-💡 <strong>光刻（PHOTO）：</strong><br>
-├─ PHOTO_ALIGN_um — 对准精度<br>
-├─ PHOTO_EXPOSURE_mJ — 曝光能量<br>
-└─ PHOTO_FOCUS_um — 焦距<br><br>
-⚙️ <strong>刻蚀（ETCH）：</strong><br>
-├─ ETCH_RATE_nm_s — 刻蚀速率<br>
-├─ ETCH_UNIFORMITY_% — 均匀性<br>
-└─ ETCH_SELECTIVITY_ratio — 选择比
+<strong>命名规则：</strong>{工序域}_{参数名}_{单位}<br><br>
+⚙️ <strong>机械装配 (MECH)：</strong>MECH_TORQUE_Nm · MECH_ALIGNMENT_um · MECH_GAP_mm<br>
+🔌 <strong>电气装配 (ELEC)：</strong>ELEC_RESISTANCE_ohm · ELEC_VOLTAGE_V · ELEC_CONTINUITY<br>
+🌬️ <strong>真空测试 (VAC)：</strong>VAC_LEAKRATE_Pam3s · VAC_PRESSURE_Pa · VAC_PUMPDOWN_s<br>
+🔥 <strong>整机老化 (BURNIN)：</strong>BURN_TEMP_C · BURN_POWER_W · BURN_RUNTIME_h<br>
+💡 <strong>光学校准 (OPT)：</strong>OPT_ALIGN_um · OPT_INTENSITY_mW · OPT_SPOT_SIZE_um
 </div>
+</div>
+</div>
+<div class="sub-branch">
+<div class="sub-header" onclick="toggleSub(this)">
+<i class="sub-toggle">▶</i>
+<span class="sub-title">5.4 参数分类分级</span>
+</div>
+<div class="children">
+<table class="table-mini"><thead><tr><th>分类</th><th>定义</th><th>管控策略</th></tr></thead><tbody>
+<tr><td>KQC（关键质量特性）</td><td>直接影响设备性能和安全</td><td>100%检验 + SPC控制图</td></tr>
+<tr><td>重要参数</td><td>影响设备稳定性</td><td>批次抽检 + 趋势监控</td></tr>
+<tr><td>一般参数</td><td>记录备查</td><td>记录即可，趋势关注</td></tr>
+</tbody></table>
 </div>
 </div>
 </div>
 </div>
 
-<!-- ===== 5. 主数据治理 ===== -->
-<div class="node branch c-teal">
-<div class="branch-header" onclick="toggle(this)">
-<i class="toggle-icon">▶</i>
-<span class="branch-title">五、主数据治理（物料与设备）</span><span class="badge">物料+设备</span>
-</div>
-<div class="children">
-<div class="sub-branch">
-<div class="sub-header" onclick="toggleSub(this)">
-<i class="sub-toggle">▶</i>
-<span class="sub-title">5.1 半导体物料治理四大挑战</span>
-</div>
-<div class="children">
-<div class="leaves">
-<span class="leaf">多分类维度冲突：功能/品类/用途 三种分类并存</span>
-<span class="leaf">多级单位转换：采购按REEL · 库存按PCS · 生产按SHOT</span>
-<span class="leaf">特殊管控属性：保质期(光刻胶) · MSL等级 · ESD敏感 · RoHS</span>
-<span class="leaf">供应商映射：8000+物料 × 多供应商 PN映射</span>
-</div>
-</div>
-</div>
-<div class="sub-branch">
-<div class="sub-header" onclick="toggleSub(this)">
-<i class="sub-toggle">▶</i>
-<span class="sub-title">5.2 物料MDM三步实施</span>
-</div>
-<div class="children">
-<div class="detail-card">
-<strong>Phase 1：物料数据清洗（3个月）</strong><br>
-├─ 全量盘点：拉取 ERP/PLM/MES 所有物料，跨系统匹配<br>
-├─ 去重合并：相似度算法 + 人工审核，一主多替<br>
-└─ 属性补全：对照标准模型补全，数据质量打分<br><br>
-<strong>Phase 2：建立 SSOT（2个月）</strong><br>
-├─ MDM平台选型部署（Informatica/SAP MDG/自研）<br>
-├─ 黄金记录(Golden Record) 定义<br>
-└─ 编码统一（新旧映射）<br><br>
-<strong>Phase 3：持续运营</strong><br>
-├─ 变更审核流程（新增/修改/停用）<br>
-└─ 日常质量监控 + 月度指标报告
-</div>
-</div>
-</div>
-<div class="sub-branch">
-<div class="sub-header" onclick="toggleSub(this)">
-<i class="sub-toggle">▶</i>
-<span class="sub-title">5.3 设备主数据结构化</span>
-</div>
-<div class="children">
-<div class="leaves">
-<span class="leaf">基础属性：设备ID/类型/厂商型号/资产编号/所在工序</span>
-<span class="leaf">技术属性：Cpk基准值/传感器清单/Recipe版本/PM周期</span>
-<span class="leaf">状态属性：当前运行状态/OEE/报警状态</span>
-<span class="leaf">关联数据：备件BOM/维护历史/校准记录/关联良率</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-<!-- ===== 6. 工艺数据治理 ===== -->
+<!-- ===== 6. 主数据治理 ===== -->
 <div class="node branch c-red">
 <div class="branch-header" onclick="toggle(this)">
 <i class="toggle-icon">▶</i>
-<span class="branch-title">六、工艺数据治理</span><span class="badge">FDC+BOM</span>
+<span class="branch-title">六、主数据治理（物料 + 设备）</span><span class="badge">MDM三步</span>
 </div>
 <div class="children">
 <div class="sub-branch">
 <div class="sub-header" onclick="toggleSub(this)">
 <i class="sub-toggle">▶</i>
-<span class="sub-title">6.1 FDC 数据三层治理</span>
-</div>
-<div class="children">
-<div class="detail-card">
-<strong>采集层治理：</strong><br>
-├─ 传感器校准管理 + 漂移检测<br>
-├─ 采集频率规范：KPC 1-10Hz | 重要 0.1-1Hz | 一般按Recipe Step<br>
-└─ 缺失值策略：停机→标记"停机" / 故障→标记"传感器异常"<br><br>
-<strong>分析层治理：</strong><br>
-├─ 异常规则：3σ统计限 / 工程规格限 / 变化率限 / 模式匹配<br>
-├─ 告警分级：Critical(停线) / Warning(24h分析) / Monitor(趋势)<br>
-└─ 规则版本化 + Owner制度<br><br>
-<strong>闭环治理：</strong><br>
-告警→响应→根因→措施 全链路追踪，知识库沉淀，误报率优化
-</div>
-</div>
-</div>
-<div class="sub-branch">
-<div class="sub-header" onclick="toggleSub(this)">
-<i class="sub-toggle">▶</i>
-<span class="sub-title">6.2 工艺参数三步法</span>
+<span class="sub-title">6.1 物料主数据四大挑战</span>
 </div>
 <div class="children">
 <div class="leaves">
-<span class="leaf">Step 1 标准化：全FAB参数盘点 → 统一命名/单位/频率 → 输出《参数标准字典》</span>
-<span class="leaf">Step 2 分类分级：KPC/KQC(100%受控) | 重要(SPC监控) | 一般(记录)</span>
-<span class="leaf">Step 3 质量平台：实时监控 + 质量评分看板 + 规则引擎 + 趋势分析</span>
+<span class="leaf">分类维度冲突：功能/品类/使用分类并存，一物多码</span>
+<span class="leaf">多级单位换算：采购PCS=库存PCS=BOM用量含小数</span>
+<span class="leaf">特殊管控：保质期(密封件/润滑脂) · ESD敏感 · RoHS</span>
+<span class="leaf">供应商映射：数千物料 × 多供应商料号映射</span>
 </div>
 </div>
 </div>
 <div class="sub-branch">
 <div class="sub-header" onclick="toggleSub(this)">
 <i class="sub-toggle">▶</i>
-<span class="sub-title">6.3 BOM 一致性治理平台</span>
+<span class="sub-title">6.2 物料MDM三步实施</span>
 </div>
 <div class="children">
 <div class="detail-card">
-<strong>三大核心功能：</strong><br><br>
-① <strong>自动转换引擎</strong>：EBOM结构→PBOM工序映射，中间件自动注入（辅料），工位分配<br>
-② <strong>一致性检查(Reconciliation)</strong>：数量对账 + 物料对账 + 差额分析<br>
-③ <strong>变更联动</strong>：ECN触发自动影响评估，版本历史追溯<br><br>
-<strong>治理指标：</strong>BOM一致性率 / ECN响应时间 / BOM准确率(实物vs MBOM)
+<strong>Phase 1：物料清洗（1-2个月）</strong><br>
+├─ 从ERP/PLM/MES全量拉取，跨系统匹配<br>
+├─ 相似度去重 + 人工复核（一主多备）<br>
+└─ 按标准模型补全属性<br><br>
+<strong>Phase 2：建立SSOT（1-2个月）</strong><br>
+├─ MDM平台部署（Informatica/SAP MDG/Stibo/自研）<br>
+├─ Golden Record 定义<br>
+├─ 编码统一（新旧映射）<br><br>
+<strong>Phase 3：持续运营</strong><br>
+├─ 变更审批流程（新增/修改/废止）<br>
+└─ 日常质量监控 + 月度指标报告 + 供应商映射维护
 </div>
+</div>
+</div>
+<div class="sub-branch">
+<div class="sub-header" onclick="toggleSub(this)">
+<i class="sub-toggle">▶</i>
+<span class="sub-title">6.3 设备主数据属性结构</span>
+</div>
+<div class="children">
+<table class="table-mini"><thead><tr><th>类别</th><th>字段</th><th>来源</th></tr></thead><tbody>
+<tr><td>基础属性</td><td>设备ID/型号/厂家型号/资产编号</td><td>ERP+PLM</td></tr>
+<tr><td>技术属性</td><td>规格参数/传感器清单/软件版本/校准周期</td><td>PLM+测试系统</td></tr>
+<tr><td>状态属性</td><td>运行状态(生产中/测试中/已发货/已装机)</td><td>MES+CRM</td></tr>
+<tr><td>关联数据</td><td>装配BOM/检验记录/测试报告/维保历史/图纸</td><td>PLM+QMS+MES</td></tr>
+</tbody></table>
 </div>
 </div>
 </div>
 </div>
 
-<!-- ===== 7. 数据质量管控 ===== -->
+<!-- ===== 7. ETL 管道与过程数据治理 ===== -->
 <div class="node branch c-slate">
 <div class="branch-header" onclick="toggle(this)">
 <i class="toggle-icon">▶</i>
-<span class="branch-title">七、数据质量管控体系</span><span class="badge">六维度+KPI</span>
+<span class="branch-title">七、ETL 管道与过程数据治理</span><span class="badge">五步ETL</span>
 </div>
 <div class="children">
 <div class="sub-branch">
 <div class="sub-header" onclick="toggleSub(this)">
 <i class="sub-toggle">▶</i>
-<span class="sub-title">7.1 FAB定制六维度模型</span>
+<span class="sub-title">7.1 数据采集策略矩阵</span>
 </div>
 <div class="children">
-<table class="table-mini"><thead><tr><th>维度</th><th>定义</th><th>FAB实例</th></tr></thead><tbody>
-<tr><td>完整性</td><td>关键字段不可为空</td><td>设备参数值不能缺失</td></tr>
-<tr><td>准确性</td><td>值与真实一致</td><td>膜厚偏差 &lt; 规格限</td></tr>
-<tr><td>一致性</td><td>跨系统一致</td><td>ERP vs MES物料编码一致率</td></tr>
-<tr><td>唯一性</td><td>无重复记录</td><td>同一物料只有一个编码</td></tr>
-<tr><td>及时性</td><td>在时限内到达</td><td>FDC数据延迟 &lt; 10s</td></tr>
-<tr><td>有效性</td><td>符合业务规则</td><td>参数值在规格范围内</td></tr>
+<table class="table-mini"><thead><tr><th>数据</th><th>采集方式</th><th>频率</th></tr></thead><tbody>
+<tr><td>PLM BOM/图纸</td><td>API 增量拉取</td><td>变更触发/每日增量</td></tr>
+<tr><td>MES 装配工单</td><td>CDC + 定时批导</td><td>实时 + 每日全量对账</td></tr>
+<tr><td>QMS 检验记录</td><td>API + 文件批导</td><td>每批次/工单完成</td></tr>
+<tr><td>整机测试数据</td><td>文件批导 + DB直连</td><td>每台测试完成</td></tr>
+<tr><td>老化测试数据</td><td>MQTT 流式</td><td>实时(秒级)</td></tr>
+<tr><td>ERP 财务/库存</td><td>SFTP + SQL</td><td>每日全量</td></tr>
+<tr><td>CRM 售后</td><td>API + 手工录入</td><td>实时 + 每日对账</td></tr>
+<tr><td>IoT 远程监控</td><td>MQTT 流式</td><td>实时</td></tr>
 </tbody></table>
 </div>
 </div>
 <div class="sub-branch">
 <div class="sub-header" onclick="toggleSub(this)">
 <i class="sub-toggle">▶</i>
-<span class="sub-title">7.2 质量监控平台架构</span>
+<span class="sub-title">7.2 ETL 五步流水线（装配工单）</span>
+</div>
+<div class="children">
+<div class="detail-card">
+<strong>Step 1：Raw 层 — 零清洗采集</strong><br>
+INSERT INTO raw_mes_assembly SELECT * FROM source，只加批次号和采集时间戳<br><br>
+<strong>Step 2：异常检测 — 脏数据隔离</strong><br>
+工序码不在标准字典 → INSERT INTO exc_mes_assembly（不阻断流程）<br><br>
+<strong>Step 3：Staging 层 — 字段标准化 + ID 映射</strong><br>
+LEFT JOIN map_EquipmentIdentity 解析 UnifiedEqpID，工序码转标准名称<br><br>
+<strong>Step 4：DW 层 — MERGE 幂等写入</strong><br>
+MERGE INTO fact_Assembly ON WorkOrderNo+ProcessStep+StartTime 做幂等键<br><br>
+<strong>Step 5：行数对账 — 确保数据完整</strong><br>
+SELECT Raw, Stg, Exc, DW → 预期 Raw = Stg + Exc = DW，不等则告警暂停
+</div>
+</div>
+</div>
+<div class="sub-branch">
+<div class="sub-header" onclick="toggleSub(this)">
+<i class="sub-toggle">▶</i>
+<span class="sub-title">7.3 装配与测试数据三层治理</span>
+</div>
+<div class="children">
+<div class="detail-card">
+<strong>采集层：</strong>量具/仪器校准 + 漂移检测 | 缺失值策略(未测/仪器异常) | 采集规范<br>
+<strong>分析层：</strong>规格限/公差限/统计控制限 | 告警分级：Critical(停线) / Warning(24h) / Monitor(趋势) | 规则版本化+Owner<br>
+<strong>闭环层：</strong>不合格品→根源分析→纠正措施→验证闭环 | 知识库积累
+</div>
+</div>
+</div>
+<div class="sub-branch">
+<div class="sub-header" onclick="toggleSub(this)">
+<i class="sub-toggle">▶</i>
+<span class="sub-title">7.4 BOM一致性治理</span>
 </div>
 <div class="children">
 <div class="leaves">
-<span class="leaf">实时监控层：ETL作业状态 / 关键指标异常（秒级/分钟级）</span>
-<span class="leaf">周期评估层：六维度指标（日/周/月报告）</span>
-<span class="leaf">改进追踪层：问题→措施→关闭 闭环管理</span>
+<span class="leaf">EBOM→MBOM转换：设计BOM注入辅料/耗材，分配工位</span>
+<span class="leaf">一致性比对：PLM EBOM vs MES MBOM 物料/用量/差异分析</span>
+<span class="leaf">变更联动：ECN触发影响评估（在产工单+在用设备升级）</span>
 </div>
 </div>
 </div>
 <div class="sub-branch">
 <div class="sub-header" onclick="toggleSub(this)">
 <i class="sub-toggle">▶</i>
-<span class="sub-title">7.3 部门级DQ-KPI与考核</span>
+<span class="sub-title">7.5 老化测试实时监控</span>
 </div>
 <div class="children">
-<table class="table-mini"><thead><tr><th>部门</th><th>KPI</th><th>目标</th><th>权重</th></tr></thead><tbody>
-<tr><td>研发</td><td>EBOM数据完整率</td><td>≥98%</td><td>20%</td></tr>
-<tr><td>工艺</td><td>工艺参数完整率</td><td>≥95%</td><td>25%</td></tr>
-<tr><td>制造</td><td>MBOM一致性率</td><td>≥98%</td><td>20%</td></tr>
-<tr><td>质量</td><td>检测数据完整率</td><td>≥98%</td><td>20%</td></tr>
-<tr><td>物控</td><td>物料编码唯一率</td><td>≥99.5%</td><td>25%</td></tr>
-</tbody></table>
-<div class="detail-card"><strong>考核机制：</strong>月度打分 + 季度排名 + 年度考核与奖金挂钩</div>
+<div class="detail-card">
+<strong>Flink SQL 滑动窗口：</strong><br>
+TUMBLE(proc_time, INTERVAL '1' HOUR) 窗口聚合 → fact_TestAggregated<br>
+AVG/STDDEV/MIN/MAX + OutOfSpecCount 实时统计 + 超限告警
+</div>
+</div>
+</div>
+<div class="sub-branch">
+<div class="sub-header" onclick="toggleSub(this)">
+<i class="sub-toggle">▶</i>
+<span class="sub-title">7.6 调度依赖时间线</span>
+</div>
+<div class="children">
+<div class="detail-card">
+00:00 PLM BOM变更拉取<br>
+00:30 MES 装配工单CDC<br>
+01:00 QMS 检验记录批导<br>
+01:30 数据质量对账<br>
+02:00 Staging 清洗<br>
+02:30 BOM版本关联SCD<br>
+03:00 DW MERGE写入<br>
+03:30 数据集市刷新<br>
+04:00 异常检测与告警<br>
+04:30 BI报表刷新<br>
+05:00 质量日报推送
+</div>
 </div>
 </div>
 </div>
 </div>
 
-<!-- ===== 8. 数据安全与合规 ===== -->
+<!-- ===== 8. 数据质量管理系统 ===== -->
 <div class="node branch c-pink">
 <div class="branch-header" onclick="toggle(this)">
 <i class="toggle-icon">▶</i>
-<span class="branch-title">八、数据安全与合规</span><span class="badge">五大场景</span>
+<span class="branch-title">八、数据质量管理系统</span><span class="badge">六维模型</span>
 </div>
 <div class="children">
 <div class="sub-branch">
 <div class="sub-header" onclick="toggleSub(this)">
 <i class="sub-toggle">▶</i>
-<span class="sub-title">8.1 半导体特有安全场景</span>
+<span class="sub-title">8.1 六维质量模型（设备制造版）</span>
 </div>
 <div class="children">
-<table class="table-mini"><thead><tr><th>场景</th><th>风险</th><th>措施</th></tr></thead><tbody>
-<tr><td>Recipe外泄</td><td>核心竞争力被盗</td><td>加密存储+访问审计+数字水印</td></tr>
-<tr><td>良率数据跨境</td><td>跨国对比需传数据</td><td>分级+脱敏后传+传输加密</td></tr>
-<tr><td>供应商数据交换</td><td>需共享设备参数</td><td>最小必要+API管控+NDT</td></tr>
-<tr><td>远程运维诊断</td><td>设备商远程接入</td><td>VPN+堡垒机+操作录屏</td></tr>
-<tr><td>员工隐私</td><td>操作员绩效含个人信息</td><td>GDPR/PIPL合规处理</td></tr>
+<table class="table-mini"><thead><tr><th>维度</th><th>定义</th><th>设备制造示例</th></tr></thead><tbody>
+<tr><td>完整性</td><td>关键字段不可NULL</td><td>装配工时/检验结果缺失率 &lt; 0.1%</td></tr>
+<tr><td>准确性</td><td>值与实际一致</td><td>扭矩实测 vs 设定值偏差 &lt; 公差</td></tr>
+<tr><td>一致性</td><td>跨系统一致</td><td>PLM vs MES 物料编码一致率 99.9%</td></tr>
+<tr><td>唯一性</td><td>无重复记录</td><td>一物一码、一设备一SN</td></tr>
+<tr><td>时效性</td><td>数据按时到达</td><td>测试数据完工后1h内入仓</td></tr>
+<tr><td>有效性</td><td>符合业务规则</td><td>检验项目在标准字典中</td></tr>
 </tbody></table>
 </div>
 </div>
 <div class="sub-branch">
 <div class="sub-header" onclick="toggleSub(this)">
 <i class="sub-toggle">▶</i>
-<span class="sub-title">8.2 数据分级管控矩阵</span>
+<span class="sub-title">8.2 设备制造专项质量规则</span>
 </div>
 <div class="children">
-<table class="table-mini"><thead><tr><th>级别</th><th>存储加密</th><th>传输加密</th><th>可访问角色</th></tr></thead><tbody>
-<tr><td>🔴绝密</td><td>AES-256必须</td><td>TLS 1.3必须</td><td>指定人员</td></tr>
-<tr><td>🟡机密</td><td>AES-256推荐</td><td>TLS 1.3必须</td><td>部门+授权</td></tr>
-<tr><td>🟢内部</td><td>建议加密</td><td>TLS推荐</td><td>全员+NDT签署</td></tr>
-<tr><td>🔵公开</td><td>不要求</td><td>不要求</td><td>所有人</td></tr>
+<div class="detail-card">
+<strong>规则1：设备SN跨系统一致性</strong><br>
+dim_Equipment LEFT JOIN map_EquipmentIdentity → 检查 MissingInMES / MissingInERP<br><br>
+<strong>规则2：关键件可追溯率</strong><br>
+dim_BOMDetail(IsCritical=1) JOIN dim_Part → SupplierID 非空率 = 100%<br><br>
+<strong>规则3：检验合格率监控</strong><br>
+fact_Inspection WHERE Result='Fail' 统计前24小时 FailRate<br><br>
+<strong>规则4：IoT时序数据连续性检测</strong><br>
+LAG(RecordTime) OVER(PARTITION BY EqpSN) → GapMinutes > 30 告警
+</div>
+</div>
+</div>
+<div class="sub-branch">
+<div class="sub-header" onclick="toggleSub(this)">
+<i class="sub-toggle">▶</i>
+<span class="sub-title">8.3 部门级DQ-KPI考核</span>
+</div>
+<div class="children">
+<table class="table-mini"><thead><tr><th>部门</th><th>KPI</th><th>目标</th></tr></thead><tbody>
+<tr><td>研发</td><td>EBOM数据完备率</td><td>≥98%</td></tr>
+<tr><td>工艺</td><td>装配工艺参数完备率</td><td>≥95%</td></tr>
+<tr><td>制造</td><td>MBOM一致率</td><td>≥98%</td></tr>
+<tr><td>质量</td><td>检验数据完备率</td><td>≥98%</td></tr>
+<tr><td>物控</td><td>物料编码唯一率</td><td>≥99.5%</td></tr>
 </tbody></table>
+</div>
+</div>
+<div class="sub-branch">
+<div class="sub-header" onclick="toggleSub(this)">
+<i class="sub-toggle">▶</i>
+<span class="sub-title">8.4 三层防护 + 客户审计</span>
+</div>
+<div class="children">
+<div class="detail-card">
+<strong>L1 — ETL实时打标：</strong>异常数据标记不阻断流程<br>
+<strong>L2 — 质量校验任务：</strong>六维度 + 行业专项规则，ETL完成后执行<br>
+<strong>L3 — 趋势分析：</strong>周报/月报 + 根因分析<br>
+<strong>L4 — 客户审计：</strong>晶圆厂客户要求从故障追溯到部件批次，一条SQL链式查询
+</div>
+</div>
+</div>
+<div class="sub-branch">
+<div class="sub-header" onclick="toggleSub(this)">
+<i class="sub-toggle">▶</i>
+<span class="sub-title">8.5 质量日报模板</span>
+</div>
+<div class="children">
+<div class="detail-card">
+<strong>半导体设备数据质量日报 (示例)</strong><br>
+总体健康度: 97.3%<br><br>
+各域健康度：<br>
+├─ 设备主数据 100%<br>
+├─ BOM/配置 98.5% (3条变更未关联)<br>
+├─ 装配在制 99.2% (2工单工序码异常)<br>
+├─ 检验数据 95.1% (0.3%超差已隔离)<br>
+├─ 测试数据 93.0% (1台老化参数波动)<br>
+├─ 供应链/库存 100%<br>
+└─ 售后/维保 96.5% (5条缺备件信息)<br><br>
+需关注：老化参数波动→产线A RF功率不稳，已通知工艺复测<br>
+趋势：98.1%→97.5%→98.0%→97.3%→97.3% (P0告警连续7天无)
+</div>
 </div>
 </div>
 </div>
 </div>
 
-<!-- ===== 9. 实施路线图 ===== -->
+<!-- ===== 9. 数据安全与合规 ===== -->
 <div class="node branch c-orange">
 <div class="branch-header" onclick="toggle(this)">
 <i class="toggle-icon">▶</i>
-<span class="branch-title">九、实施路线图（12个月）</span><span class="badge">3 Phases</span>
+<span class="branch-title">九、数据安全与合规</span><span class="badge">五大场景</span>
 </div>
 <div class="children">
 <div class="sub-branch">
 <div class="sub-header" onclick="toggleSub(this)">
 <i class="sub-toggle">▶</i>
-<span class="sub-title">Phase 1：筑基期（M1-M3）</span>
+<span class="sub-title">9.1 设备制造五大安全场景</span>
+</div>
+<div class="children">
+<table class="table-mini"><thead><tr><th>场景</th><th>风险</th><th>应对</th></tr></thead><tbody>
+<tr><td>设计图纸泄露</td><td>核心设计被窃</td><td>加密存储+访问审计+数字水印</td></tr>
+<tr><td>出口管制(EAR)</td><td>特定设备/部件受EAR管制</td><td>按管制分类标记，禁止违规跨境</td></tr>
+<tr><td>客户数据泄露</td><td>晶圆厂运行数据外泄</td><td>按客户隔离，互不可见</td></tr>
+<tr><td>远程运维安全</td><td>远程接入客户现场</td><td>VPN+堡垒机+操作录屏+最小权限</td></tr>
+<tr><td>供应商数据交换</td><td>零部件规格共享</td><td>最小必要+API管控+NDT签署</td></tr>
+</tbody></table>
+</div>
+</div>
+<div class="sub-branch">
+<div class="sub-header" onclick="toggleSub(this)">
+<i class="sub-toggle">▶</i>
+<span class="sub-title">9.2 数据安全分级矩阵</span>
+</div>
+<div class="children">
+<table class="table-mini"><thead><tr><th>等级</th><th>定义</th><th>存储加密</th><th>可访问角色</th></tr></thead><tbody>
+<tr><td>L4 绝密</td><td>核心技术机密</td><td>AES-256</td><td>指定人员</td></tr>
+<tr><td>L3 敏感</td><td>客户/合规敏感</td><td>AES-256推荐</td><td>部门+授权</td></tr>
+<tr><td>L2 内部</td><td>企业经营数据</td><td>加密推荐</td><td>全员+NDT</td></tr>
+<tr><td>L1 公开</td><td>可公开数据</td><td>不要求</td><td>全员</td></tr>
+</tbody></table>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ===== 10. 实施路线图 ===== -->
+<div class="node branch c-green">
+<div class="branch-header" onclick="toggle(this)">
+<i class="toggle-icon">▶</i>
+<span class="branch-title">十、实施路线图（详细月度计划）</span><span class="badge">12个月4阶段</span>
+</div>
+<div class="children">
+<div class="sub-branch">
+<div class="sub-header" onclick="toggleSub(this)">
+<i class="sub-toggle">▶</i>
+<span class="sub-title">Phase 1：基础建设（M1-M3）</span>
 </div>
 <div class="children">
 <div class="detail-card">
-<strong>🎯 目标：搭组织、定标准、清家底</strong><br><br>
-M1：成立DMO+委员会 | 启动数据盘点 | 工具选型 | 制度框架<br>
-M2：物料清洗开始 | 标准草案 | 数据分类分级 | MDM平台部署<br>
-M3：物料清洗完成 | 标准定稿发布 | 资产目录初版 | MDM试运行<br><br>
-<strong>🚩 Quick Win：</strong>物料主数据清洗 + 资产目录上线
+<strong>🎯 目标：搭组织、建标准、摸家底</strong><br><br>
+M1：成立委员会+DMO | 数据源盘点 | 工具选型 | 制度框架<br>
+M2：物料清洗启动 | 数据标准草案 | 分类分级 | MDM平台部署 | 流平台(Kafka+Flink)<br>
+M3：物料清洗完成 | 标准发布 | 资产目录上线 | MDM试运行 | 首条ETL管道 | 质量看板V1<br><br>
+<strong>🚩 里程碑：</strong>组织到位、资产目录覆盖7系统、物料唯一率≥99.5%、首条管道运行
 </div>
 </div>
 </div>
 <div class="sub-branch">
 <div class="sub-header" onclick="toggleSub(this)">
 <i class="sub-toggle">▶</i>
-<span class="sub-title">Phase 2：贯通期（M4-M8）</span>
+<span class="sub-title">Phase 2：核心打通（M4-M6）</span>
 </div>
 <div class="children">
 <div class="detail-card">
-<strong>🎯 目标：核心链路打通、质量监控上线</strong><br><br>
-M4：PLM↔MDM接口开发 | 第一批参数标准<br>
-M5：MDM↔MES接口开发 | 质量规则配置 | 数据管家培训<br>
-M6：BOM一致性校验上线 | 质量监控看板上线<br>
-M7：FDC数据治理上线 | DQ看板 | 月度考核首次执行<br>
-M8：参数标准覆盖率90% | 半年度复盘 | 质量改进闭环<br><br>
-<strong>关键里程碑：</strong>PLM-MDM-MES三大系统核心字段一致
+<strong>🎯 目标：PLM-MDM-MES 核心链路打通</strong><br><br>
+M4：PLM→MDM接口 | 首批参数标准(机械+电气) | BOM标准发布 | 工单对账<br>
+M5：MDM→MES接口 | BOM维表上线 | 20+质量规则 | 检验管道上线 | 标准推广<br>
+M6：BOM一致性比对 | 质量看板V2(六维+Trend) | 生产数据集市 | 首次月度考核 | BOM变更管道<br><br>
+<strong>🚩 里程碑：</strong>三大系统核心字段一致、BOM版本管理上线、质量看板全表覆盖
 </div>
 </div>
 </div>
 <div class="sub-branch">
 <div class="sub-header" onclick="toggleSub(this)">
 <i class="sub-toggle">▶</i>
-<span class="sub-title">Phase 3：优化期（M9-M12）</span>
+<span class="sub-title">Phase 3：深化应用（M7-M9）</span>
 </div>
 <div class="children">
 <div class="detail-card">
-<strong>🎯 目标：全面推广、数据驱动</strong><br><br>
-M9：全域推广至FAB2 | 资产目录V2.0 | 数据文化培训<br>
-M10：根因分析试点 | 参数优化试点 | 数据服务平台上<br>
-M11：ML试点（参数→良率预测）| AI辅助决策<br>
-M12：项目总结 | 2027规划 | 最佳实践分享 | 转入持续运营
+<strong>🎯 目标：质量数据中心建成，服务数据打通</strong><br><br>
+M7：测试数据治理(整机+老化) | 质量数据集市 | CRM数据入仓 | 参数标准80% | 日报自动化<br>
+M8：设备数据集市(OEE) | IoT数据入仓 | 根因分析机制 | 数据血缘追踪<br>
+M9：供应链数据集市 | 经营数据集市 | 参数标准90%+ | 推广第二产线 | 数据文化培训<br><br>
+<strong>🚩 里程碑：</strong>6个数据集市上线、月度考核常态化、客户追溯可查
 </div>
 </div>
 </div>
 <div class="sub-branch">
 <div class="sub-header" onclick="toggleSub(this)">
 <i class="sub-toggle">▶</i>
-<span class="sub-title">资源投入与风险应对</span>
+<span class="sub-title">Phase 4：智能运营（M10-M12）</span>
 </div>
 <div class="children">
 <div class="detail-card">
-<strong>团队规模：</strong>Phase1: 12人 → Phase2: 20人 → Phase3: 20人<br><br>
-<strong>⚠️ 五大风险应对：</strong><br>
-├─ 业务不配合 → 高层挂帅 + Quick Win + KPI挂钩<br>
-├─ 标准推不动 → 先易后难 + 与流程绑定（不符就走不通）<br>
-├─ 历史数据差 → 分批次清洗 + 合理基线 + 持续改进<br>
-├─ 系统改造成本大 → 接口层优先，不改原系统<br>
-└─ 人员流失 → 知识文档化 + AB角备份
+<strong>🎯 目标：AI 辅助决策，持续优化</strong><br><br>
+M10：根因分析试点 | 参数优化试点 | 数据服务API | 质量指标达标 | 售后数据集市<br>
+M11：质量预测PoC(参数→通过率) | 预测维护PoC(提前48h) | 智能备件推荐 | 成熟度自评<br>
+M12：项目总结(8项SMART目标达成) | 下年度规划 | 知识沉淀 | 运营交接 | 治理大会<br><br>
+<strong>🚩 里程碑：</strong>8个SMART目标达成、成熟度≥L3、运营交接完成
+</div>
+</div>
+</div>
+<div class="sub-branch">
+<div class="sub-header" onclick="toggleSub(this)">
+<i class="sub-toggle">▶</i>
+<span class="sub-title">资源与风险</span>
+</div>
+<div class="children">
+<div class="detail-card">
+<strong>团队规模：</strong>12人 → 18人 → 20人 → 20人<br><br>
+<strong>⚠️ 五大风险：</strong><br>
+├─ 业务不配合 → 高管背书 + Quick Win + KPI挂钩<br>
+├─ 标准推不动 → 先易后难 + 流程绑定<br>
+├─ 历史数据差 → 批量清洗 + 合理基线 + 持续改进<br>
+├─ 改造成本大 → 优先接口层，不碰原系统<br>
+└─ 人员流失 → 文档化 + AB角备份
 </div>
 </div>
 </div>
 </div>
 </div>
 
-<!-- ===== 10. 附录 ===== -->
-<div class="node branch c-green">
+<!-- ===== 11. 工具选型与成熟度 ===== -->
+<div class="node branch c-purple">
 <div class="branch-header" onclick="toggle(this)">
 <i class="toggle-icon">▶</i>
-<span class="branch-title">十、附录：工具选型与成熟度评估</span><span class="badge">工具+成熟度</span>
+<span class="branch-title">十一、工具选型与成熟度评估</span><span class="badge">工具+模型</span>
 </div>
 <div class="children">
 <div class="sub-branch">
@@ -645,62 +847,93 @@ M12：项目总结 | 2027规划 | 最佳实践分享 | 转入持续运营
 <span class="sub-title">MDM 平台对比</span>
 </div>
 <div class="children">
-<table class="table-mini"><thead><tr><th>工具</th><th>优势</th><th>适合场景</th></tr></thead><tbody>
-<tr><td>Informatica MDM</td><td>功能全面，DQ集成好</td><td>大型半导体集团</td></tr>
+<table class="table-mini"><thead><tr><th>工具</th><th>优势</th><th>适用场景</th></tr></thead><tbody>
+<tr><td>Informatica MDM</td><td>功能全面，DQ集成好</td><td>大型制造集团</td></tr>
 <tr><td>SAP MDG</td><td>与SAP ERP原生集成</td><td>SAP生态企业</td></tr>
-<tr><td>Stibo Systems</td><td>多域MDM，快速上线</td><td>跨国企业</td></tr>
-<tr><td>自研MDM</td><td>灵活可控</td><td>有自研能力的中型FAB</td></tr>
+<tr><td>Stibo Systems</td><td>多域MDM，部署快</td><td>跨国企业</td></tr>
+<tr><td>自研MDM</td><td>灵活可控</td><td>有自研能力的企业</td></tr>
 </tbody></table>
 </div>
 </div>
 <div class="sub-branch">
 <div class="sub-header" onclick="toggleSub(this)">
 <i class="sub-toggle">▶</i>
-<span class="sub-title">数据治理平台对比</span>
+<span class="sub-title">治理平台对比</span>
 </div>
 <div class="children">
 <table class="table-mini"><thead><tr><th>工具</th><th>核心能力</th><th>推荐度</th></tr></thead><tbody>
 <tr><td>Collibra</td><td>数据目录+工作流+血缘</td><td>⭐⭐⭐⭐⭐</td></tr>
 <tr><td>Alation</td><td>数据目录+搜索+协作</td><td>⭐⭐⭐⭐</td></tr>
 <tr><td>Apache Atlas</td><td>开源元数据+血缘</td><td>⭐⭐⭐</td></tr>
-<tr><td>DataHub(LinkedIn)</td><td>开源数据目录</td><td>⭐⭐⭐⭐</td></tr>
+<tr><td>DataHub (LinkedIn)</td><td>开源数据目录</td><td>⭐⭐⭐⭐</td></tr>
 </tbody></table>
 </div>
 </div>
 <div class="sub-branch">
 <div class="sub-header" onclick="toggleSub(this)">
 <i class="sub-toggle">▶</i>
-<span class="sub-title">成熟度评估模型（L1-L5）</span>
+<span class="sub-title">成熟度模型 L1-L5</span>
 </div>
 <div class="children">
 <div class="detail-card">
-<strong>L1 混乱级：</strong>数据散落，无标准无管理，"不治理也能跑"<br>
-<strong>L2 规范级：</strong>✅ 目标1年内 | 建立组织制度，物料MDM上线，核心标准发布<br>
-<strong>L3 量化级：</strong>✅ 目标2年内 | 全链路贯通，参数全标准化，质量可度量<br>
-<strong>L4 优化级：</strong>数据驱动工艺优化，AI根因分析，预测性质量管控<br>
-<strong>L5 智能级：</strong>自优化制造，数字孪生驱动，全自动数据治理
+<strong>L1 混乱级：</strong>数据散落，无标准无管理<br>
+<strong>L2 标准级：</strong>✅ Phase 1-2目标 | 组织制度建立、MDM上线、核心标准发布<br>
+<strong>L3 量化级：</strong>✅ Phase 3-4目标 | 全链贯通、参数标准化、质量可量化<br>
+<strong>L4 优化级：</strong>数据驱动流程优化、AI根因分析（下一年度）<br>
+<strong>L5 智能级：</strong>自优化制造、全自动治理（长远愿景）
 </div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ===== 12. 附录 ===== -->
+<div class="node branch c-slate">
+<div class="branch-header" onclick="toggle(this)">
+<i class="toggle-icon">▶</i>
+<span class="branch-title">十二、附录：术语表与参考</span><span class="badge">术语+风险</span>
+</div>
+<div class="children">
+<div class="sub-branch">
+<div class="sub-header" onclick="toggleSub(this)">
+<i class="sub-toggle">▶</i>
+<span class="sub-title">行业术语表</span>
+</div>
+<div class="children">
+<table class="table-mini"><thead><tr><th>缩写</th><th>全称</th><th>中文</th></tr></thead><tbody>
+<tr><td>BOM</td><td>Bill of Materials</td><td>物料清单</td></tr>
+<tr><td>EBOM</td><td>Engineering BOM</td><td>设计BOM</td></tr>
+<tr><td>MBOM</td><td>Manufacturing BOM</td><td>制造BOM</td></tr>
+<tr><td>PLM</td><td>Product Lifecycle Management</td><td>产品生命周期管理</td></tr>
+<tr><td>MES</td><td>Manufacturing Execution System</td><td>制造执行系统</td></tr>
+<tr><td>QMS</td><td>Quality Management System</td><td>质量管理系统</td></tr>
+<tr><td>SCM</td><td>Supply Chain Management</td><td>供应链管理</td></tr>
+<tr><td>ECN/ECO</td><td>Engineering Change Notice/Order</td><td>工程变更通知/订单</td></tr>
+<tr><td>ETO</td><td>Engineering To Order</td><td>按单设计</td></tr>
+<tr><td>MDM</td><td>Master Data Management</td><td>主数据管理</td></tr>
+<tr><td>SSOT</td><td>Single Source of Truth</td><td>单一事实来源</td></tr>
+<tr><td>OEE</td><td>Overall Equipment Effectiveness</td><td>设备综合效率</td></tr>
+<tr><td>MTBF</td><td>Mean Time Between Failures</td><td>平均故障间隔</td></tr>
+<tr><td>MTTR</td><td>Mean Time To Repair</td><td>平均修复时间</td></tr>
+<tr><td>KQC</td><td>Key Quality Characteristic</td><td>关键质量特性</td></tr>
+<tr><td>EAR</td><td>Export Administration Regulations</td><td>出口管理条例</td></tr>
+<tr><td>IoT</td><td>Internet of Things</td><td>物联网(远程监控)</td></tr>
+<tr><td>SECS/GEM</td><td>SEMI Equipment Communications Standard</td><td>半导体设备通信标准</td></tr>
+</tbody></table>
 </div>
 </div>
 <div class="sub-branch">
 <div class="sub-header" onclick="toggleSub(this)">
 <i class="sub-toggle">▶</i>
-<span class="sub-title">术语表</span>
+<span class="sub-title">五大风险与应对</span>
 </div>
 <div class="children">
-<table class="table-mini"><thead><tr><th>术语</th><th>英文</th><th>说明</th></tr></thead><tbody>
-<tr><td>FDC</td><td>Fault Detection & Classification</td><td>故障检测与分类</td></tr>
-<tr><td>SPC</td><td>Statistical Process Control</td><td>统计过程控制</td></tr>
-<tr><td>RMS</td><td>Recipe Management System</td><td>配方管理系统</td></tr>
-<tr><td>YMS</td><td>Yield Management System</td><td>良率管理系统</td></tr>
-<tr><td>EAP</td><td>Equipment Automation Platform</td><td>设备自动化平台</td></tr>
-<tr><td>KPC/KQC</td><td>Key Process/Quality Characteristic</td><td>关键过程/质量特性</td></tr>
-<tr><td>SSOT</td><td>Single Source of Truth</td><td>单一事实来源</td></tr>
-<tr><td>ECN</td><td>Engineering Change Notice</td><td>工程变更通知</td></tr>
-<tr><td>FAB</td><td>Fabrication</td><td>晶圆制造厂</td></tr>
-<tr><td>OSAT</td><td>Assembly & Test</td><td>封装测试厂</td></tr>
-<tr><td>Recipe</td><td>—</td><td>工艺配方（设备参数集）</td></tr>
-<tr><td>NTO</td><td>New Tape Out</td><td>新产品导入</td></tr>
+<table class="table-mini"><thead><tr><th>风险</th><th>概率</th><th>影响</th><th>应对</th></tr></thead><tbody>
+<tr><td>业务不配合</td><td>高</td><td>高</td><td>高管背书+Quick Win+KPI挂钩</td></tr>
+<tr><td>标准推不动</td><td>中</td><td>高</td><td>先易后难+流程绑定</td></tr>
+<tr><td>历史数据差</td><td>高</td><td>中</td><td>批量清洗+合理基线+持续改进</td></tr>
+<tr><td>改造成本高</td><td>中</td><td>中</td><td>优先接口层，不碰原系统</td></tr>
+<tr><td>人员流失</td><td>中</td><td>中</td><td>文档化+AB角备份</td></tr>
 </tbody></table>
 </div>
 </div>
@@ -710,14 +943,14 @@ M12：项目总结 | 2027规划 | 最佳实践分享 | 转入持续运营
 </div><!-- end mindmap -->
 
 <div class="stats-bar">
-<div class="stat-item"><div class="stat-num">10</div><div class="stat-label">大模块</div></div>
-<div class="stat-item"><div class="stat-num">30+</div><div class="stat-label">核心知识点</div></div>
+<div class="stat-item"><div class="stat-num">12</div><div class="stat-label">大模块</div></div>
+<div class="stat-item"><div class="stat-num">40+</div><div class="stat-label">子节点</div></div>
 <div class="stat-item"><div class="stat-num">100+</div><div class="stat-label">详细条目</div></div>
 <div class="stat-item"><div class="stat-num">12个月</div><div class="stat-label">实施周期</div></div>
 </div>
 
 <div class="footer">
-<p>半导体制造业数据治理实施方案 v1.0 | 适用场景：FAB/OSAT数据治理 · 体系建设 · 项目实施</p>
+<p>半导体设备制造企业数据治理实施方案 v2.0 | 适用场景：北方华创 · 富创精密 · 中微公司 · 盛美上海</p>
 <p style="margin-top:4px;">点击每个节点可展开/收起子内容 | 支持关键词搜索高亮</p>
 </div>
 
